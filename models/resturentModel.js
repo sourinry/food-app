@@ -6,10 +6,10 @@ const resturentModel = new mongoose.Schema(
       type: String,
       required: [true, "resturent tittel must required"],
     },
-    imgUrl: {
+    imageUrl: {
       type: String,
     },
-    food: {
+    foods: {
       type: Array,
     },
     time: {
@@ -50,7 +50,7 @@ const resturentModel = new mongoose.Schema(
         type: Number,
       },
       latitudeDelta: {
-        Type: Number,
+        type: Number,
       },
       longitude: {
         type: Number,

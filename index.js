@@ -17,6 +17,7 @@ app.use(morgan('dev')); // for logging purpose in console
 app.use('/api/v1/test', require('./routes/testRouter'));
 app.use('/api/v1/auth', require('./routes/authRoute'));
 app.use('/api/v1/user', require('./routes/userRoute'));
+app.use('/api/v1/resturent', require('./routes/resturentRoute'));
 
 //url 
 app.get('/', (req, res) => {
