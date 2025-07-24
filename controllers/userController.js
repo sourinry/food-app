@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const userModel = require("../models/userModel");
 
+//get uses controller 
 const getUserController = async (req,res) => {
     try {
         console.log(req.user.id); // check whats in the payload
@@ -34,7 +35,7 @@ const getUserController = async (req,res) => {
 };
 
 
-//update
+//update user controller
 const updateUserController = async (req,res) => {
     try {
         const userFound = await userModel.findById({_id:req.user.id});
@@ -66,7 +67,7 @@ const updateUserController = async (req,res) => {
     }
 };
 
-//reset password
+//reset password controller
 const resetPasswordController = async (req,res) => {
     try {
         const { email, newPassword, answer } = req.body;

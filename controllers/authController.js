@@ -3,7 +3,7 @@ const userModel = require("../models/userModel");
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 
-//registration
+//registration controller 
 const registerController = async (req,res) => {
     try {
         const { userName, email, password, address, phone, answer }=req.body;
@@ -38,9 +38,7 @@ const registerController = async (req,res) => {
              answer
             });
 
-        //hode password
-        // user.password=undefined;
-        // show 
+        //send data || show data 
         res.status(201).send({
             success: true,
             message:"user register succefully",

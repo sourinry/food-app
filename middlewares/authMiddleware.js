@@ -13,7 +13,7 @@ module.exports = async(req, res, next ) => {
                 req.user = decode;
                 next();
             }
-        })
+        });
     } catch (error) {
         console.log(error);
         res.status(505).send({
@@ -22,4 +22,4 @@ module.exports = async(req, res, next ) => {
             error
         });
     }
-}
+};
