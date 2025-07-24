@@ -6,9 +6,9 @@ const JWT = require('jsonwebtoken');
 //registration
 const registerController = async (req,res) => {
     try {
-        const { userName, email, password, address, phone }=req.body;
+        const { userName, email, password, address, phone, answer }=req.body;
         //check for data 
-        if(!userName || !email || !password || !address || !phone){
+        if(!userName || !email || !password || !address || !phone || !answer){
             return res.status(404).send({
                 success:false,
                 message:"data not found or plese provided all required fields"
@@ -34,8 +34,12 @@ const registerController = async (req,res) => {
              email, 
              password:hashPassword, 
              address, 
-             phone});
+             phone,
+             answer
+            });
 
+        //hode password
+        // user.password=undefined;
         // show 
         res.status(201).send({
             success: true,
@@ -65,7 +69,7 @@ const loginController = async (req,res) => {
         }
         
         //check 
-        const userFound = await userModel.findOne({email:email});
+        const userFound = await userModel.findOne({email:email}).select("+password");
         if(!userFound){
             return res.status(404).send({
                 success: false,
@@ -86,10 +90,14 @@ const loginController = async (req,res) => {
         const token = JWT.sign({id:userFound._id}, process.env.JWT_SECRET, {
             expiresIn:"7d"
         });
+        //hide password
+        const safeData = userFound.toObject();
+        delete safeData.password;
+        //send data 
         res.status(201).send({
             success: true,
             message: "user found",
-            data: userFound,
+            data: safeData,
             token
         })
     } catch (error) {

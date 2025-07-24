@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        required:true,
+        select: false
     },
     address:{
         type:Array
@@ -27,7 +28,10 @@ const userSchema = new mongoose.Schema({
         default: 'client',
         enum:['client', 'admin', 'vendor', 'driver']
     },
-    
+    answer:{
+        type: String,
+        required: [true, "answer must br provided"]
+    }
 }, {timestamps:true});
 
 module.exports = mongoose.model("User", userSchema);
