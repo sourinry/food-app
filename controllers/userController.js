@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const userModel = require("../models/userModel");
+const { default: mongoose } = require('mongoose');
 
 //get uses controller 
 const getUserController = async (req,res) => {
@@ -149,12 +150,38 @@ const updatePasswordController = async (req,res) => {
             message: "internal server error || error in update password API"
         });
     }
-}
+};
+
+//delete user controller
+const deleteUsercontroller = async (req,res) => {
+    try {
+        const id = req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(401).send({
+                success: false,
+                message: "please provided mongoose type id"
+            });
+        }
+
+        await userModel.findByIdAndDelete({_id:id});
+        res.status(201).send({
+            success: true,
+            message: "user deleted successfull"
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(505).send({
+            success: false,
+            message: "internal server error || error in delete user API"
+        });
+    }
+};
 
 //export
 module.exports = { 
     getUserController,
     updateUserController,
     resetPasswordController,
-    updatePasswordController
+    updatePasswordController,
+    deleteUsercontroller
     };

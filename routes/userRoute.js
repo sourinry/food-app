@@ -2,9 +2,11 @@ const express = require('express');
 const { getUserController, 
     updateUserController, 
     resetPasswordController, 
-    updatePasswordController 
+    updatePasswordController, 
+    deleteUsercontroller
     } = require('../controllers/userController');
 const authMiddleware = require('../middlewares/authMiddleware');
+
 
 const router = express.Router();
 
@@ -16,7 +18,8 @@ router.put('/updateUser', authMiddleware, updateUserController);
 router.post('/resetPassword', authMiddleware, resetPasswordController);
 //password update 
 router.post('/updatePassword', authMiddleware, updatePasswordController);
-
+//delete user
+router.delete('/deleteUser/:id', authMiddleware, deleteUsercontroller);
 
 //exports
 module.exports=router;
