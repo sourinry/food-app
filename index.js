@@ -19,6 +19,7 @@ app.use('/api/v1/auth', require('./routes/authRoute'));
 app.use('/api/v1/user', require('./routes/userRoute'));
 app.use('/api/v1/resturent', require('./routes/resturentRoute'));
 app.use('/api/v1/category', require('./routes/categoryRoute'));
+app.use('/api/v1/food', require('./routes/foodRoute'));
 
 //url 
 app.get('/', (req, res) => {
