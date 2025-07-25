@@ -237,6 +237,18 @@ const deleteFoodByID = async (req,res) => {
 };
 
 
+//place order controller
+const placeOrderController = async (req,res) => {
+    try {
+         
+    } catch (error) {
+        console.log(error);
+        res.status(505).send({
+            success: false,
+            message: "internal server error || error in place order API"
+        });
+    }
+};
 
 module.exports ={
     createFoodController,
@@ -244,5 +256,6 @@ module.exports ={
     getFoodByIdController,
     getFoodByResturent,
     updateFoodByIdController,
-    deleteFoodByID
+    deleteFoodByID,
+    placeOrderController
 };
